@@ -9,6 +9,7 @@ class PembayaranKontrak extends Model
     protected $table = 'pembayaran_kontrak';
 	protected $primaryKey = 'id_pembayaran_kontrak';
     public $incrementing = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'id_pembayaran_kontrak',
