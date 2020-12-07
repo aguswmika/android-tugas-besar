@@ -16,7 +16,7 @@ class CreateLapakTable extends Migration
         Schema::create('lapak', function (Blueprint $table) {
             $table->increments('id_lapak');
             $table->string('nama_lapak',20);
-            $table->integer('id_kategory_lapak')->unsigned();
+            $table->integer('id_kategori_lapak')->unsigned();
             $table->string('nama_pemilik',20);
             $table->text('alamat');
             $table->text('foto_pemilik');
