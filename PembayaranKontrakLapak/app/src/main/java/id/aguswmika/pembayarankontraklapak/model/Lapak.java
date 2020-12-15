@@ -14,10 +14,10 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Lapak {
-    @SerializedName("id")
-    private int id;
-    @SerializedName("nama")
-    private String nama;
+    @SerializedName("id_lapak")
+    private int id_lapak;
+    @SerializedName("nama_lapak")
+    private String nama_lapak;
     @SerializedName("id_kategori_lapak")
     private int id_kategori_lapak;
     @SerializedName("nama_pemilik")
@@ -31,15 +31,15 @@ public class Lapak {
     @SerializedName("status")
     private int status;
     @SerializedName("tanggal_pendaftaran")
-    private Date tanggal_pendaftaran;
+    private String tanggal_pendaftaran;
     @SerializedName("tanggal_akhir_kontrak")
-    private Date tanggal_akhir_kontrak;
+    private String tanggal_akhir_kontrak;
 
     public Lapak(){ }
 
-    public Lapak(int id, String nama, int id_kategori_lapak, String nama_pemilik, String alamat_pemilik, String foto_pemilik, String posisi_lapak, int status, Date tanggal_pendaftaran, Date tanggal_akhir_kontrak){
-        this.id = id;
-        this.nama = nama;
+    public Lapak(int id, String nama, int id_kategori_lapak, String nama_pemilik, String alamat_pemilik, String foto_pemilik, String posisi_lapak, int status, String tanggal_pendaftaran, String tanggal_akhir_kontrak){
+        this.id_lapak = id;
+        this.nama_lapak = nama;
         this.id_kategori_lapak = id_kategori_lapak;
         this.nama_pemilik = nama_pemilik;
         this.alamat_pemilik = alamat_pemilik;
@@ -50,20 +50,20 @@ public class Lapak {
         this.tanggal_akhir_kontrak = tanggal_akhir_kontrak;
     }
 
-    public int getId() {
-        return id;
+    public int getIdLapak() {
+        return id_lapak;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdLapak(int id) {
+        this.id_lapak = id;
     }
 
-    public String getNama() {
-        return nama;
+    public String getNamaLapak() {
+        return nama_lapak;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setNamaLapak(String nama) {
+        this.nama_lapak = nama;
     }
 
     public int getIdKategoriLapak() {
@@ -114,39 +114,55 @@ public class Lapak {
         this.status = status;
     }
 
-    public Date getTanggalPendaftaran() {
-        return tanggal_pendaftaran;
-    }
-
-    public void setTanggalPendaftaran(Date tanggal_pendaftaran) {
-        this.tanggal_pendaftaran = tanggal_pendaftaran;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @SuppressLint("SimpleDateFormat")
-    public void setTanggalPendaftaran(String tanggal_pendaftaran){
-        try{
-            this.tanggal_pendaftaran = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").parse(tanggal_pendaftaran);
-        }catch (ParseException e){
-            Log.e("Date error : ", Objects.requireNonNull(e.getMessage()));
-        }
-    }
-
-    public Date getTanggalAkhirKontrak() {
+    public String getTanggalAkhirKontrak() {
         return tanggal_akhir_kontrak;
     }
 
-    public void setTanggalAkhirKontrak(Date tanggal_akhir_kontrak) {
+    public void setTanggalAkhirKontrak(String tanggal_akhir_kontrak) {
         this.tanggal_akhir_kontrak = tanggal_akhir_kontrak;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @SuppressLint("SimpleDateFormat")
-    public void setTanggalAkhirKontrak(String tanggal_akhir_kontrak){
-        try{
-            this.tanggal_akhir_kontrak = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").parse(tanggal_akhir_kontrak);
-        }catch (ParseException e){
-            Log.e("Date error : ", Objects.requireNonNull(e.getMessage()));
-        }
+    public String getTanggalPendaftaran() {
+        return tanggal_pendaftaran;
     }
+
+    public void setTanggalPendaftaran(String tanggal_pendaftaran) {
+        this.tanggal_pendaftaran = tanggal_pendaftaran;
+    }
+
+    //    public Date getTanggalPendaftaran() {
+//        return tanggal_pendaftaran;
+//    }
+//
+//    public void setTanggalPendaftaran(Date tanggal_pendaftaran) {
+//        this.tanggal_pendaftaran = tanggal_pendaftaran;
+//    }
+
+//    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+//    @SuppressLint("SimpleDateFormat")
+//    public void setTanggalPendaftaran(String tanggal_pendaftaran){
+//        try{
+//            this.tanggal_pendaftaran = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").parse(tanggal_pendaftaran);
+//        }catch (ParseException e){
+//            Log.e("Date error : ", Objects.requireNonNull(e.getMessage()));
+//        }
+//    }
+//
+//    public Date getTanggalAkhirKontrak() {
+//        return tanggal_akhir_kontrak;
+//    }
+//
+//    public void setTanggalAkhirKontrak(Date tanggal_akhir_kontrak) {
+//        this.tanggal_akhir_kontrak = tanggal_akhir_kontrak;
+//    }
+//
+//    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+//    @SuppressLint("SimpleDateFormat")
+//    public void setTanggalAkhirKontrak(String tanggal_akhir_kontrak){
+//        try{
+//            this.tanggal_akhir_kontrak = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").parse(tanggal_akhir_kontrak);
+//        }catch (ParseException e){
+//            Log.e("Date error : ", Objects.requireNonNull(e.getMessage()));
+//        }
+//    }
 }

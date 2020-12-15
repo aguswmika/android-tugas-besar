@@ -23,4 +23,8 @@ class Lapak extends Model
         'tanggal_akhir_kontrak',
         'id_admin'
     ];
+
+    public function kategori(){
+        return $this->belongsTo(KategoriLapak::class, 'id_kategori_lapak', 'id_kategori_lapak');
+    }
 }

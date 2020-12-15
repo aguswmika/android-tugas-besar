@@ -15,21 +15,9 @@ import androidx.lifecycle.ViewModelProviders;
 import id.aguswmika.pembayarankontraklapak.R;
 
 public class PembayaranRiwayatFragment extends Fragment {
-
-    private PembayaranViewModel pembayaranViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        pembayaranViewModel =
-                ViewModelProviders.of(this).get(PembayaranViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_pembayaran_riwayat, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        pembayaranViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+
+        return inflater.inflate(R.layout.fragment_pembayaran_riwayat, container, false);
     }
 }

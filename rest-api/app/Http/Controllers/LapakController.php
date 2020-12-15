@@ -77,27 +77,31 @@ class LapakController extends Controller
     }
     public function kategory_lapak_name(Request $request)
     {
-        $valid = Validator::make($request->all(), [
-            'keyword'          => 'required|string',
-        ]);
+        // $valid = Validator::make($request->all(), [
+        //     'keyword'          => 'required|string',
+        // ]);
 
-        if ($valid->fails()) {
-            $message = '';
-            foreach ($valid->errors()->all() as $error) {
-                $message .= $error . PHP_EOL;
-            }
-            return $this->sendError($message);
-        }
+        // if ($valid->fails()) {
+        //     $message = '';
+        //     foreach ($valid->errors()->all() as $error) {
+        //         $message .= $error . PHP_EOL;
+        //     }
+        //     return $this->sendError($message);
+        // }
 
         DB::beginTransaction();
         try {
-            $data = Lapak::where('lapak.nama_lapak', 'like', '%' . $request->keyword . '%')
-                        ->orWhere('kategori_lapak.nama_kategori','like', '%' . $request->keyword . '%')
-                        ->orWhere('lapak.posisi_lapak','like', '%' . $request->keyword . '%')
-                        ->join('kategori_lapak','lapak.id_kategori_lapak','=','kategori_lapak.id_kategori_lapak')
-                        ->get();
-                DB::commit();
-                return $this->sendData($data);
+            $data = [];
+            if(!empty($request->keyword)){
+                $data = Lapak::where('lapak.nama_lapak', 'like', '%' . $request->keyword . '%')
+                            ->orWhere('lapak.posisi_lapak','like', '%' . $request->keyword . '%')
+                            ->with('kategori')
+                            ->get();
+            }
+
+            
+            DB::commit();
+            return $this->sendData($data);
             
         } catch (Exception | QueryException $e) {
             DB::rollBack();
