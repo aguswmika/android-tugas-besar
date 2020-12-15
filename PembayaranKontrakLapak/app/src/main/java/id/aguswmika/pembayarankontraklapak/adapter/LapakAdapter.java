@@ -58,7 +58,7 @@ public class LapakAdapter extends RecyclerView.Adapter<LapakAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(LapakAdapter.ViewHolder holder, int position) {
-        Lapak data = datas.get(position);
+        final Lapak data = datas.get(position);
 
         TextView namaText = holder.namaText;
         namaText.setText(data.getNamaLapak());
@@ -70,7 +70,8 @@ public class LapakAdapter extends RecyclerView.Adapter<LapakAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), PembayaranCreateActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("id_lapak", data.getIdLapak());
                 view.getContext().startActivity(intent);
             }
         });

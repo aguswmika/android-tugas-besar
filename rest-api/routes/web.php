@@ -39,7 +39,7 @@ $router->group([
 ], function () use ($router){
     $router->post('/store', [
         'as' => 'pembayaran-kontrak.index',
-        'uses' => 'PembayaranKontrak@store'
+        'uses' => 'PembayaranKontrakController@store'
     ]);
 });
 // });
