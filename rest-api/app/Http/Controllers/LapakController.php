@@ -93,6 +93,7 @@ class LapakController extends Controller
         try {
             $data = Lapak::where('lapak.nama_lapak', 'like', '%' . $request->keyword . '%')
                         ->orWhere('kategori_lapak.nama_kategori','like', '%' . $request->keyword . '%')
+                        ->orWhere('lapak.posisi_lapak','like', '%' . $request->keyword . '%')
                         ->join('kategori_lapak','lapak.id_kategori_lapak','=','kategori_lapak.id_kategori_lapak')
                         ->get();
                 DB::commit();
