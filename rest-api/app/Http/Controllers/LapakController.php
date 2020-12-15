@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\KategoriLapak;
 use App\Lapak;
 use App\PembayaranKontrak;
 use Exception;
@@ -48,7 +49,6 @@ class LapakController extends Controller
             return $this->sendError($e->getMessage());
         }
     }
-
     public function get_lapak_by_name(Request $request)
     {
         $valid = Validator::make($request->all(), [
@@ -65,11 +65,39 @@ class LapakController extends Controller
 
         DB::beginTransaction();
         try {
-            $data = Lapak::where('lapak_name', 'like', '%' . $request->nama_lapak . '%')
+            $data = Lapak::where('nama_lapak', 'like', '%' . $request->nama_lapak . '%')
                 ->get()
                 ->toArray();
             DB::commit();
             return $this->sendData($data);
+        } catch (Exception | QueryException $e) {
+            DB::rollBack();
+            return $this->sendError($e->getMessage());
+        }
+    }
+    public function kategory_lapak_name(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'keyword'          => 'required|string',
+        ]);
+
+        if ($valid->fails()) {
+            $message = '';
+            foreach ($valid->errors()->all() as $error) {
+                $message .= $error . PHP_EOL;
+            }
+            return $this->sendError($message);
+        }
+
+        DB::beginTransaction();
+        try {
+            $data = Lapak::where('lapak.nama_lapak', 'like', '%' . $request->keyword . '%')
+                        ->orWhere('kategori_lapak.nama_kategori','like', '%' . $request->keyword . '%')
+                        ->join('kategori_lapak','lapak.id_kategori_lapak','=','kategori_lapak.id_kategori_lapak')
+                        ->get();
+                DB::commit();
+                return $this->sendData($data);
+            
         } catch (Exception | QueryException $e) {
             DB::rollBack();
             return $this->sendError($e->getMessage());

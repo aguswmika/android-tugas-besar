@@ -23,6 +23,10 @@ $router->group([
         'as' => 'lapak.index',
         'uses' => 'LapakController@index'
     ]);
+    $router->post('/keyword', [
+        'as' => 'lapak.index.keyword',
+        'uses' => 'LapakController@kategory_lapak_name'
+    ]);
 });
 
 // $router->get('/lapak', [
