@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Lapak;
 use App\PembayaranKontrak;
 use Exception;
 use Illuminate\Database\QueryException as DatabaseQueryException;
@@ -15,13 +14,12 @@ class PembayaranKontrakController extends Controller
     public function store(Request $request){
         $valid = Validator::make($request->all(), [
             'id_lapak'              => 'required|integer',
-            'tanggal_bayar'         => 'required',
             'tanggal_kontrak_awal'  => 'required',
             'tanggal_kontrak_akhir' => 'required',
             'nilai'                 => 'required|integer',
-            'id_admin'              => 'required|integer',
-            'id_manager'            => 'required|integer',
-            'tanggal_penyerahan'    => 'required'
+            // 'id_admin'              => 'required|integer',
+            // 'id_manager'            => 'required|integer',
+            // 'tanggal_penyerahan'    => 'required'
         ]);
 
         if ($valid->fails()) {
@@ -36,13 +34,13 @@ class PembayaranKontrakController extends Controller
         try {
             $dataForInsert = [
                 'id_lapak'              => $request->id_lapak,
-                'tanggal_bayar'         => $request->tanggal_bayar,
-                'tanggal_kontrak_awal'  => $request->tanggal_kontrak_awal,
-                'tanggal_kontrak_akhir' => $request->tanggal_kontrak_akhir,
+                'tanggal_bayar'         => date('Y-m-d H:i:s'),
+                'tanggal_kontrak_awal'  => date('Y-m-d H:i:s', strtotime($request->tanggal_kontrak_awal)),
+                'tanggal_kontrak_akhir' => date('Y-m-d H:i:s', strtotime($request->tanggal_kontrak_akhir)),
                 'nilai'                 => $request->nilai,
-                'id_admin'              => $request->id_admin,
-                'id_manager'            => $request->id_manager,
-                'tanggal_penyerahan'    => $request->tanggal_penyerahan
+                'id_admin'              => 1,
+                'id_manager'            => NULL,
+                'tanggal_penyerahan'    => NULL
             ];
             // dd($dataForInsert);
             PembayaranKontrak::create($dataForInsert);

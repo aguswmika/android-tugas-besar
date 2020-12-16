@@ -34,14 +34,14 @@
 //     'uses' => 'LapakController@store'
 // ]);
 
-    $router->group([
-        'prefix' => 'pembayaran-kontrak'
-    ], function () use ($router){
-        $router->post('/store', [
-            'as' => 'pembayaran-kontrak.index',
-            'uses' => 'PembayaranKontrak@store'
-        ]);
-    });
+$router->group([
+    'prefix' => 'pembayaran-kontrak'
+], function () use ($router){
+    $router->post('/store', [
+        'as' => 'pembayaran-kontrak.index',
+        'uses' => 'PembayaranKontrakController@store'
+    ]);
+});
 // });
 $router->get('/', function () use ($router) {
     return $router->app->version();
