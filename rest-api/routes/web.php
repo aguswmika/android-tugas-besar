@@ -16,33 +16,35 @@
 // $router->group([
 //     'middleware' => 'auth'
 // ], function($router){
-$router->group([
-    'prefix' => 'lapak'
-], function () use ($router){
-    $router->get('/', [
-        'as' => 'lapak.index',
-        'uses' => 'LapakController@index'
-    ]);
-    $router->post('/keyword', [
-        'as' => 'lapak.index.keyword',
-        'uses' => 'LapakController@kategory_lapak_name'
-    ]);
-});
+    $router->group([
+        'prefix' => 'lapak'
+    ], function () use ($router){
+        $router->get('/', [
+            'as' => 'lapak.index',
+            'uses' => 'LapakController@index'
+        ]);
+        $router->post('/keyword', [
+            'as' => 'lapak.index.keyword',
+            'uses' => 'LapakController@kategory_lapak_name'
+        ]);
+    });
 
 // $router->get('/lapak', [
 //     'as' => 'lapak.index',
 //     'uses' => 'LapakController@store'
 // ]);
 
-$router->group([
-    'prefix' => 'pembayaran-kontrak'
-], function () use ($router){
-    $router->post('/store', [
-        'as' => 'pembayaran-kontrak.index',
-        'uses' => 'PembayaranKontrak@store'
-    ]);
-});
+    $router->group([
+        'prefix' => 'pembayaran-kontrak'
+    ], function () use ($router){
+        $router->post('/store', [
+            'as' => 'pembayaran-kontrak.index',
+            'uses' => 'PembayaranKontrak@store'
+        ]);
+    });
 // });
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->post('login', 'AuthController@login');
