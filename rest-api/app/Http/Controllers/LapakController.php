@@ -28,7 +28,6 @@ class LapakController extends Controller
         $valid = Validator::make($request->all(), [
             'id_lapak'          => 'required|integer',
         ]);
-
         if ($valid->fails()) {
             $message = '';
             foreach ($valid->errors()->all() as $error) {
@@ -39,9 +38,9 @@ class LapakController extends Controller
 
         DB::beginTransaction();
         try {
-            $data = Lapak::where('id_lapak', '=', $request->lapak_id)
+            $data = Lapak::where('id_lapak', '=', $request->id_lapak)
                         ->get();
-
+            dd($data);
             DB::commit();
             return $this->sendData($data);
         } catch (Exception | QueryException $e) {
