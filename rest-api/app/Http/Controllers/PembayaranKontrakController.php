@@ -44,13 +44,31 @@ class PembayaranKontrakController extends Controller
             //     'tanggal_penyerahan'    => NULL
             // ];
             // dd($dataForInsert);
-            $data = PembayaranKontrak::orderBy('id', 'DESC')->get();
+            $datas = PembayaranKontrak::orderBy('id_pembayaran_kontrak', 'DESC')
+                        ->get();
+            $newData = [];
+            foreach($datas as $data){
+                array_push($newData, [
+                    "id_pembayaran_kontrak" => $data->id_pembayaran_kontrak,
+                    "id_lapak" => $data->id_lapak,
+                    "tanggal_bayar"=> $data->tanggal_bayar,
+                    "tanggal_kontrak_awal" => date('d-m-Y', strtotime($data->tanggal_kontrak_awal)),
+                    "tanggal_kontrak_akhir" => date('d-m-Y', strtotime($data->tanggal_kontrak_akhir)),
+                    "nilai" => $data->nilai,
+                    "id_admin" => $data->id_admin,
+                    "id_manager" => $data->id_manager,
+                    "tanggal_penyerahan" => $data->id_manager,
+                    'posisi_lapak' => $data->lapak->posisi_lapak,
+                    'nama_lapak' => $data->lapak->nama_lapak,
+                    'nama_pemilik' => $data->lapak->nama_pemilik
+                ]);
+            }
 
             DB::commit();
-            return $this->sendData($data);
+            return $this->sendData($newData);
         } catch (Exception | DatabaseQueryException $e) {
             DB::rollBack();
-            return $this->sendError('Ada Kesalahan');
+            return $this->sendError($e->getMessage());
         }
     }
     public function store(Request $request){

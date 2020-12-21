@@ -22,4 +22,8 @@ class PembayaranKontrak extends Model
         'id_manager',
         'tanggal_penyerahan'
     ];
+
+    public function lapak(){
+        return $this->belongsTo(Lapak::class, 'id_lapak', 'id_lapak');
+    }
 }
