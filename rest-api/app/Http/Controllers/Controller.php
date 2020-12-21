@@ -22,4 +22,14 @@ class Controller extends BaseController
     //         'error' => true
     //     ], $status);
     // }
+
+    protected function respondWithToken($token)
+    {
+        return $this->sendData([
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL() * 60
+        ], 'Success');
+    }
+
 }

@@ -45,6 +45,14 @@ $router->group([
         'as' => 'pembayaran-kontrak.store',
         'uses' => 'PembayaranKontrakController@store'
     ]);
+    $router->post('/update', [
+        'as' => 'pembayaran-kontrak.update',
+        'uses' => 'PembayaranKontrakController@update'
+    ]);
+    $router->post('/delete', [
+        'as' => 'pembayaran-kontrak.delete',
+        'uses' => 'PembayaranKontrakController@delete'
+    ]);
 });
 // });
 $router->get('/', function () use ($router) {

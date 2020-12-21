@@ -37,20 +37,20 @@ class AuthController extends Controller
             foreach ($valid->errors()->all() as $error) {
                 $message .= $error . PHP_EOL;
             }
-            return $this->sendError($message);
+            return $this->sendData(null, $message, true);
         }
         $user = Admin::where('username', '=',$request->username)->first();
         if (!$user) {
 
-            return $this->sendError('user tidak ditemukan!');
+            return $this->sendData(null, "User tidak ditemukan !", true);
         }
         if ($request->password == $user->password) {
             if (! $token = Auth::fromuser($user)) {
-                return $this->sendError('Unauthorized');
+                return $this->sendData(null, 'Unauthorize', true);
             }
             return $this->respondWithToken($token);
         }
-        return $this->sendError('username atau password salah!');
+        return $this->sendData(null, 'Username atau password salah', true);
         
     }
 }

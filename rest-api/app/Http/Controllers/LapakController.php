@@ -23,31 +23,6 @@ class LapakController extends Controller
         //
     }
 
-    public function index(Request $request)
-    {
-        $valid = Validator::make($request->all(), [
-            'id_lapak'          => 'required|integer',
-        ]);
-        if ($valid->fails()) {
-            $message = '';
-            foreach ($valid->errors()->all() as $error) {
-                $message .= $error . PHP_EOL;
-            }
-            return $this->sendError($message);
-        }
-
-        DB::beginTransaction();
-        try {
-            $data = Lapak::where('id_lapak', '=', $request->id_lapak)
-                        ->get();
-            dd($data);
-            DB::commit();
-            return $this->sendData($data);
-        } catch (Exception | QueryException $e) {
-            DB::rollBack();
-            return $this->sendError($e->getMessage());
-        }
-    }
     public function get_lapak_by_name(Request $request)
     {
         $valid = Validator::make($request->all(), [
@@ -59,7 +34,7 @@ class LapakController extends Controller
             foreach ($valid->errors()->all() as $error) {
                 $message .= $error . PHP_EOL;
             }
-            return $this->sendError($message);
+            return $this->sendData(null, $message, true);
         }
 
         DB::beginTransaction();
@@ -100,11 +75,11 @@ class LapakController extends Controller
 
             
             DB::commit();
-            return $this->sendData($data);
+            return $this->sendData($data,'Success');
             
         } catch (Exception | QueryException $e) {
             DB::rollBack();
-            return $this->sendError($e->getMessage());
+            return $this->sendData(null, $e->getMessage(), true);
         }
     }
 }
