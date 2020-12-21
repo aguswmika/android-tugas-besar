@@ -68,10 +68,10 @@ class LapakController extends Controller
                 ->get()
                 ->toArray();
             DB::commit();
-            return $this->sendData($data);
+            return $this->sendData($data, 'Success');
         } catch (Exception | QueryException $e) {
             DB::rollBack();
-            return $this->sendError($e->getMessage());
+            return $this->sendData(null, $e->getMessage(), true);
         }
     }
     public function kategory_lapak_name(Request $request)

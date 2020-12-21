@@ -37,8 +37,12 @@
 $router->group([
     'prefix' => 'pembayaran-kontrak'
 ], function () use ($router){
-    $router->post('/store', [
+    $router->post('/index', [
         'as' => 'pembayaran-kontrak.index',
+        'uses' => 'PembayaranKontrakController@index'
+    ]);
+    $router->post('/store', [
+        'as' => 'pembayaran-kontrak.store',
         'uses' => 'PembayaranKontrakController@store'
     ]);
 });
