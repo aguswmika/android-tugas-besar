@@ -92,6 +92,10 @@ class PembayaranKontrakController extends Controller
 
         DB::beginTransaction();
         try {
+
+            if($request->nilai <= 0){
+                throw new Exception("Nominal harus diatas 0");
+            }
             $tanggal_kontrak_awal = Lapak::where('id_lapak','=',$request->id_lapak)
                                         ->select('tanggal_akhir_kontrak')
                                         ->first();

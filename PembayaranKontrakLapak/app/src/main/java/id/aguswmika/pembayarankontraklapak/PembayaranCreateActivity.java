@@ -116,13 +116,14 @@ public class PembayaranCreateActivity extends AppCompatActivity {
                 addPembayaranKontrak.enqueue(new Callback<PembayaranKontrakResult>() {
                     @Override
                     public void onResponse(Call<PembayaranKontrakResult> call, Response<PembayaranKontrakResult> response) {
+                        assert response.body() != null;
                         PembayaranKontrakResult result = response.body();
                         try{
                             if(result.getError()){
-                                Log.d("err", result.getMessage());
+                                Toast.makeText(PembayaranCreateActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                             }else{
                                 PembayaranCreateActivity.super.onBackPressed();
-                                Toast.makeText(PembayaranCreateActivity.this, result.getMessage(), Toast.LENGTH_LONG ).show();
+                                Toast.makeText(PembayaranCreateActivity.this, result.getMessage(), Toast.LENGTH_SHORT ).show();
                             }
                         }catch (Exception e){
                             if(response.code() == 401){
