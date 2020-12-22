@@ -18,6 +18,13 @@ public class Session {
         editor.apply();
     }
 
+    public void remove(String key){
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.remove(key);
+        editor.apply();
+    }
+
     public String read(String key){
         return sharedPref.getString(key, null);
     }

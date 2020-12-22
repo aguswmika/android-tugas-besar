@@ -11,7 +11,7 @@ class Controller extends BaseController
         return response([
             'data' => $data,
             'message' => $message,
-            'error' => false
+            'error' => $error
         ], 200);
     }
     
@@ -25,11 +25,7 @@ class Controller extends BaseController
 
     protected function respondWithToken($token)
     {
-        return $this->sendData([
-            'token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60
-        ], 'Success');
+        return $this->sendData($token, 'Success');
     }
 
 }

@@ -72,17 +72,10 @@ public class LapakAdapter extends RecyclerView.Adapter<LapakAdapter.ViewHolder> 
                 Intent intent = new Intent(view.getContext(), PembayaranCreateActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("id_lapak", data.getIdLapak());
+                intent.putExtra("tanggal_akhir_kontrak", data.getTanggalAkhirKontrak());
                 view.getContext().startActivity(intent);
             }
         });
-
-
-
-//        if(TextUtils.isEmpty(data.getFotoPemilik())){
-//            new DownloadImageTask(fotoImage).execute("https://tripisia.id/assets/images/NoImage.png");
-//        }else{
-//            new DownloadImageTask(fotoImage).execute(data.getFotoPemilik());
-//        }
     }
 
     @Override

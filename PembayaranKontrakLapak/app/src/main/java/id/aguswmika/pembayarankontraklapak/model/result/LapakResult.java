@@ -11,6 +11,8 @@ public class LapakResult {
     private List<Lapak> data;
     @SerializedName("error")
     private Boolean error;
+    @SerializedName("message")
+    private String message;
 
     public void setData(List<Lapak> data) {
         this.data = data;
@@ -26,5 +28,13 @@ public class LapakResult {
 
     public Boolean getError() {
         return error;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

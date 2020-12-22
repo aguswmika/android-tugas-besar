@@ -2,19 +2,24 @@ package id.aguswmika.pembayarankontraklapak.model.result;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+import id.aguswmika.pembayarankontraklapak.model.Lapak;
+import id.aguswmika.pembayarankontraklapak.model.PembayaranLapak;
+
 public class PembayaranKontrakResult {
     @SerializedName("data")
-    private String data;
+    private List<PembayaranLapak> data;
     @SerializedName("error")
     private Boolean error;
     @SerializedName("message")
     private String message;
 
-    public void setData(String data) {
+    public void setData(List<PembayaranLapak> data) {
         this.data = data;
     }
 
-    public String getData() {
+    public List<PembayaranLapak> getData() {
         return data;
     }
 

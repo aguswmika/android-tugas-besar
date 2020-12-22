@@ -3,19 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="15dp"
     android:orientation="horizontal"
-    android:padding="10dp"
     app:contentPadding="10dp"
-    android:id="@+id/lapakCardView"
-    app:cardBackgroundColor="@color/colorAccent"
-    app:cardCornerRadius="10dp">
-    <!--    <ImageView-->
-    <!--        android:layout_width="100dp"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:contentDescription="Foto Lapak"-->
-    <!--        android:scaleType="fitXY"-->
-    <!--        android:id="@+id/fotoImage"/>-->
+    android:id="@+id/lapakCardView">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -11,6 +11,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -39,13 +41,14 @@ class AuthController extends Controller
             }
             return $this->sendData(null, $message, true);
         }
-        $user = Admin::where('username', '=',$request->username)->first();
+        $user = Admin::where('username', '=',$request->username)
+                    ->where(DB::raw('role'), '=', 'pegawai')
+                    ->where('status', '=', 1)->first();
         if (!$user) {
-
             return $this->sendData(null, "User tidak ditemukan !", true);
         }
         if ($request->password == $user->password) {
-            if (! $token = Auth::fromuser($user)) {
+            if (! $token = Auth::fromUser($user)) {
                 return $this->sendData(null, 'Unauthorize', true);
             }
             return $this->respondWithToken($token);

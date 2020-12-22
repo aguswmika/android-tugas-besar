@@ -33,8 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nama :"
-                android:textStyle="bold"
-                android:textFontWeight="600" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/namaText"
@@ -45,8 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pemilik :"
-                android:textStyle="bold"
-                android:textFontWeight="600" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pemilikText"
@@ -57,8 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tanggal :"
-                android:textStyle="bold"
-                android:textFontWeight="600" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tanggalText"
@@ -69,8 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Periode :"
-                android:textStyle="bold"
-                android:textFontWeight="600" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/periodeText"

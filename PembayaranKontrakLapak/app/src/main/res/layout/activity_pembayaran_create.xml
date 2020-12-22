@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PembayaranCreateActivity"
-
     >
 
     <ScrollView
@@ -25,41 +24,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Periode Pembayaran"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
 
             <Spinner
                 android:id="@+id/periodeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/periode_pembayaran"
-                android:spinnerMode="dialog" />
+                android:spinnerMode="dialog"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/edittext_rounded"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Nominal (/bulan)"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
 
             <EditText
                 android:id="@+id/nominalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Tanggal Kontrak"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/tanggalText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:inputType="date" />
+                android:inputType="number"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/edittext_rounded"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -68,12 +65,15 @@
                 android:text="Tanggal Kontrak Berakhir"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/tanggalBerakhirText"
+            <TextView
+                android:id="@+id/tanggalLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:inputType="date" />
+                android:layout_marginTop="10dp"
+                android:textSize="24sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
     </ScrollView>
@@ -84,6 +84,7 @@
         android:orientation="vertical"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" >
@@ -93,12 +94,20 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:id="@+id/totalLabel"
-            android:text="Total: Rp 0"/>
+            android:text="Total: Rp 0"
+            android:layout_marginBottom="10dp"/>
         <Button
             android:id="@+id/bayarButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bayar" />
+            android:text="Bayar"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_rounded"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
