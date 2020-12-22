@@ -34,6 +34,11 @@ tools:targetApi="m">
         android:name=".PembayaranCreateActivity"
         android:label="Pembayaran Kontrak"
         android:windowSoftInputMode="adjustPan" />
+
+    <activity
+        android:name=".ContributorActivity"
+        android:label="Kontributor"
+        android:windowSoftInputMode="adjustPan"/>
 </application>
 
 </manifest>

@@ -56,4 +56,18 @@ class AuthController extends Controller
         return $this->sendData(null, 'Username atau password salah', true);
         
     }
+
+    public function user(){
+        return $this->sendData(Admin::join('pegawai', 'pegawai.id_pegawai', '=', 'admin.id_pegawai')
+        ->select(
+            'admin.id_admin',
+            'admin.id_pegawai',
+            'pegawai.nama_pegawai',
+            'admin.role',
+            'pegawai.alamat',
+            'pegawai.foto'
+        )
+        ->where('id_admin', '=', Auth::user()->id_admin)
+        ->first(), 'Success');
+    }
 }

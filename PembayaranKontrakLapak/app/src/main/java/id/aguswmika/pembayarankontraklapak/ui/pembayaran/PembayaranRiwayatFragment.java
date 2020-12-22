@@ -44,7 +44,7 @@ public class PembayaranRiwayatFragment extends Fragment {
         pembayaranKontrakRecycler = view.findViewById(R.id.pembayaranKontrakRecycler);
         pembayaranKontrakRecycler.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
-        apiClient.getPembayaran().enqueue(new Callback<PembayaranKontrakResult>() {
+        apiClient.getPembayaran("Bearer "+session.read("token")).enqueue(new Callback<PembayaranKontrakResult>() {
             @Override
             public void onResponse(Call<PembayaranKontrakResult> call, Response<PembayaranKontrakResult> response) {
                 PembayaranKontrakResult result = response.body();

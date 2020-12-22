@@ -112,7 +112,7 @@ class PembayaranKontrakController extends Controller
             PembayaranKontrak::create($dataForInsert);
 
             DB::commit();
-            return $this->sendData($dataForInsert,'Berhasil menambahkan data');
+            return $this->sendData(null, 'Berhasil menambahkan data');
         } catch (Exception | DatabaseQueryException $e) {
             DB::rollBack();
             return $this->sendData(null, $e->getMessage(), true);

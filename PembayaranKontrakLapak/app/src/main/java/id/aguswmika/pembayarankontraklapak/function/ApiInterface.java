@@ -1,7 +1,9 @@
 package id.aguswmika.pembayarankontraklapak.function;
 
+import id.aguswmika.pembayarankontraklapak.model.Pegawai;
 import id.aguswmika.pembayarankontraklapak.model.result.LapakResult;
 import id.aguswmika.pembayarankontraklapak.model.result.LoginResult;
+import id.aguswmika.pembayarankontraklapak.model.result.PegawaiResult;
 import id.aguswmika.pembayarankontraklapak.model.result.PembayaranKontrakResult;
 import id.aguswmika.pembayarankontraklapak.model.result.PembayaranKontrakResultTemp;
 import retrofit2.Call;
@@ -24,7 +26,10 @@ public interface ApiInterface {
                                                            @Header("Authorization") String auth);
 
     @POST("pembayaran-kontrak/index")
-    Call<PembayaranKontrakResult> getPembayaran();
+    Call<PembayaranKontrakResult> getPembayaran(@Header("Authorization") String auth);
+
+    @POST("user")
+    Call<PegawaiResult> getUser(@Header("Authorization") String auth);
 
     @FormUrlEncoded
     @POST("login")

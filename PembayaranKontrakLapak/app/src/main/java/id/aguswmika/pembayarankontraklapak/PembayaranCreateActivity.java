@@ -110,14 +110,20 @@ public class PembayaranCreateActivity extends AppCompatActivity {
                         id_lapak,
                         total,
                         periode,
-                        session.read("token")
+                        "Bearer "+session.read("token")
                 );
 
                 addPembayaranKontrak.enqueue(new Callback<PembayaranKontrakResult>() {
                     @Override
                     public void onResponse(Call<PembayaranKontrakResult> call, Response<PembayaranKontrakResult> response) {
+                        PembayaranKontrakResult result = response.body();
                         try{
-
+                            if(result.getError()){
+                                Log.d("err", result.getMessage());
+                            }else{
+                                PembayaranCreateActivity.super.onBackPressed();
+                                Toast.makeText(PembayaranCreateActivity.this, result.getMessage(), Toast.LENGTH_LONG ).show();
+                            }
                         }catch (Exception e){
                             if(response.code() == 401){
                                 Toast.makeText(PembayaranCreateActivity.this, "Akses ditolak, silahkan login!", Toast.LENGTH_SHORT).show();
@@ -131,8 +137,6 @@ public class PembayaranCreateActivity extends AppCompatActivity {
                                 finish();
                             }
                         }
-                        PembayaranCreateActivity.super.onBackPressed();
-                        Toast.makeText(PembayaranCreateActivity.this, "Berhasil",Toast.LENGTH_LONG ).show();
 
                     }
 
@@ -178,7 +182,11 @@ public class PembayaranCreateActivity extends AppCompatActivity {
         myCalendar.setTime(dateFormat);
         myCalendar.add(Calendar.MONTH, add_month);
 
-        tanggalLabel.setText(formatter.format(myCalendar));
+        try {
+            tanggalLabel.setText(formatter.format(myCalendar.getTime()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         int nominal = Integer.parseInt(TextUtils.isEmpty(nominalText.getText().toString()) ? "0" : nominalText.getText().toString());
         total = nominal * add_month;

@@ -37,6 +37,10 @@ $router->group([
     //     'uses' => 'LapakController@store'
     // ]);
 
+    $router->post('/user',[
+        'as' => 'user',
+        'uses' => 'AuthController@user']);
+
     $router->group([
         'prefix' => 'pembayaran-kontrak'
     ], function () use ($router){
