@@ -7,6 +7,7 @@ use App\Lapak;
 use App\PembayaranKontrak;
 use Exception;
 use Illuminate\Database\QueryException as DatabaseQueryException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -108,12 +109,17 @@ class PembayaranKontrakController extends Controller
                 'tanggal_kontrak_awal'  => date('Y-m-d H:i:s', strtotime($tanggal_kontrak_awal['tanggal_akhir_kontrak'])),
                 'tanggal_kontrak_akhir' => date('Y-m-d H:i:s', strtotime($tanggal_kontrak_akhir)),
                 'nilai'                 => $request->nilai,
-                'id_admin'              => 1,
+                'id_admin'              => Auth::user()->id_admin,
                 'id_manager'            => NULL,
                 'tanggal_penyerahan'    => NULL
             ];
             // dd($dataForInsert);
             PembayaranKontrak::create($dataForInsert);
+
+            Lapak::where('id_lapak', '=', $request->id_lapak)
+                    ->update([
+                        'tanggal_akhir_kontrak' => date('Y-m-d H:i:s', strtotime($tanggal_kontrak_akhir))
+                    ]);
 
             DB::commit();
             return $this->sendData(null, 'Berhasil menambahkan data');
